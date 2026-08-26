@@ -64,3 +64,4 @@ translateButton.addEventListener("click", async function () {
             "Sorry, the translation service is currently unavailable.";
     }
 });
+alert("SCRIPT IS WORKING");
