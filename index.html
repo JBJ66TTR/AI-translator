@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Translator</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>🌍 AI Translator</h1>
+
+        <p>Translate your text into another language.</p>
+
+        <textarea
+            id="textInput"
+            placeholder="Type something to translate..."
+        ></textarea>
+
+        <label for="language">Translate to:</label>
+
+        <select id="language">
+
+            <option value="French">🇫🇷 French</option>
+
+            <option value="Spanish">🇪🇸 Spanish</option>
+
+            <option value="Arabic">🇲🇦 Arabic</option>
+
+            <option value="German">🇩🇪 German</option>
+
+            <option value="Italian">🇮🇹 Italian</option>
+
+        </select>
+
+        <button id="translateButton">
+            Translate
+        </button>
+
+        <h2>Translation</h2>
+
+        <div id="result">
+            Your translation will appear here.
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
