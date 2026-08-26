@@ -14,8 +14,7 @@ const languages = {
 translateButton.addEventListener("click", async function () {
 
     const text = textInput.value.trim();
-    const selectedLanguage = language.value;
-    const targetLanguage = languages[selectedLanguage];
+    const target = languages[language.value];
 
     if (text === "") {
         result.textContent = "Please enter some text first.";
@@ -25,43 +24,31 @@ translateButton.addEventListener("click", async function () {
     result.textContent = "Translating...";
 
     try {
-
         const response = await fetch(
-            "https://libretranslate.com/translate",
+            "https://broken-wind-47b6.maazouzsara66.workers.dev/",
             {
                 method: "POST",
-
                 headers: {
                     "Content-Type": "application/json"
                 },
-
                 body: JSON.stringify({
                     q: text,
-                    source: "auto",
-                    target: targetLanguage,
-                    format: "text"
+                    target: target
                 })
             }
         );
 
-        if (!response.ok) {
-            throw new Error("Translation request failed");
-        }
-
         const data = await response.json();
 
-        if (!data.translatedText) {
-            throw new Error("No translation received");
+        if (!response.ok || !data.translatedText) {
+            throw new Error("Translation failed");
         }
 
         result.textContent = data.translatedText;
 
     } catch (error) {
-
         console.error(error);
-
         result.textContent =
-            "Sorry, the translation service is currently unavailable.";
+            "Translation failed. Please try again.";
     }
 });
-alert("SCRIPT IS WORKING");
