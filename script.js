@@ -40,11 +40,11 @@ translateButton.addEventListener("click", async function () {
 
         const data = await response.json();
 
-        if (!response.ok || !data.translatedText) {
+     if (!response.ok || !data.translated_text) {
             throw new Error("Translation failed");
         }
 
-        result.textContent = data.translatedText;
+        result.textContent = data.translated_text;
 
     } catch (error) {
         console.error(error);
