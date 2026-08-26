@@ -25,25 +25,42 @@ translateButton.addEventListener("click", async function () {
     result.textContent = "Translating...";
 
     try {
-        const url =
-            `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=en|${targetLanguage}`;
 
-        const response = await fetch(url);
+        const response = await fetch(
+            "https://libretranslate.com/translate",
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+                    q: text,
+                    source: "auto",
+                    target: targetLanguage,
+                    format: "text"
+                })
+            }
+        );
 
         if (!response.ok) {
-            throw new Error("Translation request failed.");
+            throw new Error("Translation request failed");
         }
 
         const data = await response.json();
 
-        if (data.responseStatus !== 200) {
-            throw new Error("Translation failed.");
+        if (!data.translatedText) {
+            throw new Error("No translation received");
         }
 
-        result.textContent = data.responseData.translatedText;
+        result.textContent = data.translatedText;
 
     } catch (error) {
+
+        console.error(error);
+
         result.textContent =
-            "Sorry, the translation could not be completed. Please try again.";
+            "Sorry, the translation service is currently unavailable.";
     }
 });
